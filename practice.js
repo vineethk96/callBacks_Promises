@@ -112,3 +112,32 @@ const myDate = function(){
 
 // Display the outcome of myDate
 myDate();
+
+
+
+
+// Async and Await
+console.log("---- 6 Async and Await ----");
+
+// This is a basic async function
+async function myRide(){
+    return '2017 Toyota Camary';
+}
+
+// Which does the EXACT same thing as this:
+function yourRide(){
+    return Promise.resolve('2017 Toyota Camary');
+}
+
+// The only difference between these two, is that the bottom is in the "promise" format. But, they still complete the same task.
+function testemBoth(boolVar){
+
+    if(boolVar){
+        return Promise.resolve('6 Promise was resolved');
+    }
+    //return Promise.reject('6 Can I reject this as well?');
+    
+}
+
+testemBoth(true);       // This works
+testemBoth(false);      // This throws an error saying I'm not handling it right?
