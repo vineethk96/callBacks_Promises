@@ -70,7 +70,8 @@ const date = new Promise(function(resolve, reject){
     else{
         
         // When weather is false, we reject, and send the error back to the function that calls this promise.
-        reject(new Error('4 Bad Weather, so no Date'));
+        console.log("4");
+        reject(new Error('Bad Weather, so no Date'));
     }
 });
 
@@ -80,7 +81,8 @@ console.log("---- 5 Chained Promises ----")
 const orderUber = function(dateDetails){
 
     return new Promise(function(resolve, reject){
-        const message = `5 Get me an Uber ASAP to ${dateDetails.location}, we are going on a date.`;
+        console.log("5");
+        const message = `Get me an Uber ASAP to ${dateDetails.location}, we are going on a date.`;
 
         resolve(message);
     });
@@ -101,7 +103,8 @@ const myDate = function(){
         .then(orderUber)                                // This shows the chaining of promises
         // If the promise is resolved
         .then(function(done){
-            console.log("4 We're going on a date!");
+            console.log("4");
+            console.log("We're going on a date!");
             console.log(done);                          // The done object holds the date details that were sent from the resolve
         })
         // If the promise returns an error
@@ -116,8 +119,8 @@ myDate();
 
 
 
-// Async and Await
-console.log("---- 6 Async and Await ----");
+// Async
+console.log("---- 6 Async ----");
 
 // This is a basic async function
 async function myRide(){
@@ -135,9 +138,33 @@ function testemBoth(boolVar){
     if(boolVar){
         return Promise.resolve('6 Promise was resolved');
     }
+    // LEARN ABOUT HOOKS
     //return Promise.reject('6 Can I reject this as well?');
     
 }
 
 testemBoth(true);       // This works
 testemBoth(false);      // This throws an error saying I'm not handling it right?
+
+// Await 
+console.log("---- 7 Await ----");
+
+async function myDate_await(){
+
+    try{
+        let dateDetails = await date;
+        let message = await orderUber(dateDetails);
+        console.log("7");
+        console.log(message);
+        console.log("7 is complete");
+    }
+    catch{
+        console.log(error.message);
+    }
+}
+
+// Display what happens with you await.
+(async () => {
+    await myDate_await();
+})();
+// myDate_await();
